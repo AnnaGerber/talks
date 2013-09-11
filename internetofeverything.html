@@ -1,0 +1,415 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Internet of Everything - Anna Gerber</title>
+
+		<meta name="description" content="Slides for 'What do you know'">
+		<meta name="author" content="Anna Gerber">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="vendor/revealjs/reveal.min.css">
+		<link rel="stylesheet" href="vendor/revealjs/simple.css" id="theme">
+		<style type="text/css">
+		.reveal .slides {
+			font-family: Helvetica;
+			text-align:left;
+		}
+		.reveal h1,
+		.reveal h2,
+		.reveal h3,
+		.reveal h4,
+		.reveal h5,
+		.reveal h6 {
+			margin: 0 0 20px 0;
+			font-family: Helvetica;
+			line-height: 1.2em;
+			letter-spacing: 0.05em;
+			text-transform: uppercase;}
+
+		</style>
+		
+		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+		<script>
+			document.write( '<link rel="stylesheet" href="vendor/revealjs/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section>
+					<h2>The Internet of Everything </h1>
+					<h3>connecting people, data, processes and things</h3>
+					<p>
+						<a href="http://twitter.com/AnnaGerber">@AnnaGerber</a>
+					</p>
+				</section>
+			
+
+				<section>
+
+					<blockquote cite="http://oxforddictionaries.com/definition/english/Internet-of-things">
+						<strong>internet of things</strong><br/>
+						<small>noun</small><br/>
+&ldquo;a proposed development of the Internet in which everyday objects have network connectivity, allowing them to send and receive data&rdquo;
+	<br/>&mdash;Oxford English Dictionary
+					</blockquote>
+					<aside class="notes">
+						The "internet of things" is a hot topic. "Internet of things" was included by the Oxford English Dictionary in its list of new words for August 2013, along with bitcoin, hackerspace, selfie and twerk.
+
+						<a href="http://www.wired.co.uk/news/archive/2013-08/29/bitcoin-added-to-dictionary">http://www.wired.co.uk/news/archive/2013-08/29/bitcoin-added-to-dictionary</a>
+
+						But what is it?
+					</aside>
+					
+				</section>
+
+				
+
+				<section>
+					<section>
+						<h2>The Vision</h2>
+
+						<aside class="notes">
+							Applications of the internet of things:
+
+							In every aspect of our lives, where we already use technological devices, these devices will increasingly be connected to the internet.
+							Most of the "things" we connect have roots in physical computing - sensors + actuators
+							Typically tiny devices e.g. microcontrollers
+
+						</aside>
+					</section>
+					<section>
+						<img src="images/connectallthethings.png" alt="Connect all the things!">
+						<small>Image modified from: <a href="http://hyperboleandahalf.blogspot.com">hyperboleandahalf.blogspot.com</a></small>
+					</section>
+					
+					<section>
+						<h3>Home</h3>
+						
+						<div style="float:left">
+							<img height="450px" src="images/twine.jpg" alt="Twine"/><br/>
+							<small><a href="http://supermechanical.com/">Twine</a> <a href="http://www.flickr.com/photos/streamishmc/8355029558/">(streamishmc CC-BY-ND)</a></small>
+						</div>
+						<ul>
+							<li>Smart homes</li>
+							<li>Home automation</li>
+						</ul>
+						<div style="width:600px;float:left;margin-top:40px">
+							<img  src="images/eggtray.jpg" alt="Smart Egg Tray"/><br/>
+							<small><a href="http://www.quirky.com/products/619-Egg-Minder-Smart-Egg-Tray">Smart Egg Tray &copy; Quirky</a></small>
+						</div>
+
+					</section>
+					<section>
+						<h3>Business &amp; Industry</h3>
+						
+						<div style="width:450px;float:left;">
+							<ul>
+								<li>Industrial automation</li>
+								<li>Inventory tracking</li>
+								<li>Point of sale</li>
+								<li>Customer tracking</li>
+								<li>Agricultural monitoring</li>
+							</ul>
+						</div>
+						<div style="float:left">
+							<img height="400px" src="images/rfidreader.jpg" alt="RFID Reader"/><br/>
+						<small><a href="http://www.flickr.com/photos/bradley_newman/170746564/">(bradley_newman CC-BY-SA)</a></small>
+						</div>
+					</section>
+					<section>
+						<h3>Transport</h3>
+						
+						<div style="width:400px;float:left">
+							<img height="450px" src="images/meter.jpg" alt="Parking meter"/><br/>
+						<small><a href="http://www.flickr.com/photos/springfieldhomer/4301546414/">(springfieldhomer CC-BY)</a></small>
+						</div>
+						<div style="float:left">
+							<ul>
+							<li>Public transport<ul>
+								<li>Ticketing</li>
+								<li>Tracking</li>
+							</ul></li>
+							<li>Navigation</li>
+							<li>Smart cars</li>
+							<li>Smart roads</li>
+							<li>Parking meters</li>
+							</ul>
+						</div>
+						<aside class="notes">
+							*Depicted is not a smart meter
+						</aside>
+					</section>
+					<section>
+						<h3>Wearable computing</h3>
+						<div style="float:left">
+							<img height="450px" src="images/glass.jpg" alt="Google Glass"/><br/>
+							<small><a href="http://www.google.com/glass/start/">Google Glass</a> <a href="http://www.flickr.com/photos/prae/9408574863/">(prae CC-BY-ND)</a></small>
+						</div>
+						<div style="float:left">
+							<img height="450px" src="images/pebble.jpg" alt="Pebble"/><br/>
+							<small><a href="http://getpebble.com/">Pebble</a> <a href="http://www.flickr.com/photos/goron/8710053286/">(goron CC-BY-NC-ND)</a></small>
+						</div>
+					</section>
+					<section>
+						<h3>Bio-medical</h3>
+						<ul>
+							<li>Health and fitness monitoring</li>
+							<li>Quantified self</li>
+						</ul>
+						<div style="float:left">
+							<img height="450px" src="images/scales.jpg" alt="Scales"/><br/>
+							<small><a href="http://www.flickr.com/photos/kogakure/4666310987/">Withings Wifi Scales (kogakure CC-BY-NC-SA)</a></small>
+						</div>
+						<div style="float:left">
+							<img height="450px" src="images/bitalino.png" alt="Bitalino"/><br/>
+							<small><a href="http://www.bitalino.com/">Bitalino Physiological Sensor Kit</a></small>
+						</div>
+						
+					</section>
+					<section>
+						<h3>Scientific</h3>
+						<ul>
+							<li>Environmental measurement</li>
+							<li>Wildlife tracking</li>
+						</ul>
+						<div style="float:left">
+							<img height="450px" src="images/sensorfish.jpg" alt="Sensor Fish"/><br/>
+							<small><a href="http://www.flickr.com/photos/pnnl/3633178973/">Sensor Fish (Pacific Northwest National Laboratory CC-BY-NC-SA)</a></small>
+						</div>
+						<div style="float:left">
+							<img height="450px" src="images/airqualityegg.png" alt="Air Quality Egg"/><br/>
+							<small><a href="">Air Quality Egg</a></small>
+						</div>
+						<aside class="notes">
+							This is an older (offline) sensor for monitoring water conditions.
+						</aside>
+					</section>
+					<section>
+						<h3>And more...</h3>
+						<ul>
+							<li>Drones</li>
+							<li>Augmented Reality</li>
+							<li>Digital Fabrication</li>
+							<li>Electronic Arts</li>
+							<li>Hobbyists / Makers</li>
+							<li>...</li>
+						</ul>
+						<div style="float:left">
+							<img height="450px" src="images/ninjablocks.jpg" alt="Ninja Blocks"/><br/>
+							<small><a href="http://ninjablocks.com/">Ninja Blocks</a>  <a href="http://www.flickr.com/photos/david_gray/8034646398/">(david_gray CC-BY-NC)</a></small>
+						</div>
+						<aside class="notes">
+							Interesting aside: though typically low-level languages such as C are used to program these kinds of devices, JavaScript is becoming more popular in the hobbyist market.
+						</aside>
+					</section>
+					
+				</section>
+				<section>
+					<section>
+						<h2>The Reality</h2>
+						<blockquote class="fragment">
+							"During 2008, the number of things connected to the Internet exceeded the number of people one earth. <br/>
+							By 2020 there will be 50 billion."<br/>
+							&mdash;<a href="http://blogs.cisco.com/news/the-internet-of-things-infographic/">CISCO</a>
+						</blockquote>
+						<aside class="notes">
+							We already have an internet of things and it is only going to get bigger:
+
+							There are already more devices on the internet than people and there have been for the past five years. Admittedly, many of these devices are devices used directly by humans - smartphones, tablets, PCs etc.
+
+							That's more than 6 times the estimated human population by 2020!
+						</aside>
+					</section>
+						<section>
+							<h3>The Internet <span class="fragment fade-out">of Everything</span></h3>
+							<p>Connecting</p>
+							<ul>
+								<li>people<span class="fragment">: social networks</span></li>
+								<li>processes<span class="fragment">: business processes, web services, web apps</span></li>
+								<li>data<span class="fragment">: linked data</li></li>
+								<li>things</li>
+							</ul>
+							<aside class="notes">
+								What we're heading towards in the near future is a highly connected, highly discoverable network of things, people, processes and data. 
+
+								CISCO uses the term "Internet of Everything" to describe this.
+
+								I prefer to call it "The Internet".
+
+								As with people, processes, and data, many of the things connected to the internet will be exposed via the web: continuing the trend of the web shifting from a web of human readable content towards a web of machine processable data and services.
+							</aside>
+						</section>
+				
+				</section>
+
+				<section>
+					<section>
+						<h3>Challenges &amp; Implications</h3>
+					</section>
+					<section>
+						<img  src="images/connectallthethings2.png" alt="Connect all the things?">
+						<aside class="notes">
+							But what does this mean for us as web developers, designers, network administrators, technologists?
+
+						</aside>	
+					</section>
+
+					<section>
+						<h3>Identification</h3>
+						<ul>
+							<li>RFID</li>
+							<li>URIs (HTTP, Semantic Web)</li>
+						    <li>IPv6<ul>
+						    	<li>6LoWPAN (IPv6 over Low power Wireless Personal Area Networks)</li>
+						    	<li>340,282,366,920,938,463,463,374,607,431,768,211,456 addresses</li>
+						    </ul></li>
+						<aside class="notes">
+							How do we identify (or address) things?
+						</aside>
+					</section>
+
+					<section>
+						<h3>Protocols &amp; Standards</h3>
+
+						<img style="height:300px" src="images/protocols.png" alt="standards"/>
+						<small><a href=""></a></small>
+						<p>Alternative M2M communication protocols:<br/> MQTT, XMPP, RESTful HTTP, CoAP</p>
+						<blockquote class="fragment">
+							&ldquo;The nice thing about standards is that you have so many to choose from.&rdquo;<br/>
+							&mdash;Andrew S. Tanenbaum
+						</blockquote>
+						<aside class="notes">
+							Once we can identify them, how do we get things to talk to each other?
+
+							IoT involves disparate devices, typically low bandwidth, limited or imperfect connectivity
+						</aside>
+					</section>
+
+					<section>
+						<h3>User Experience</h3>
+						<aside class="notes">
+							<p>How to provide a consistent user experience across traditional PCs, mobile, wearables, persistence of vision displays etc... </p>
+					</section>
+					<section>
+						<h3>Semantic Interoperability</h3>
+						<aside class="notes">
+							Role for linked data, ontologies and other semantic web standards. NB: Semantic Web != RDF/XML
+						</aside>
+					</section>
+					<section>
+						<h3>Security &amp; Privacy</h3>
+						<img src="images/shodan.png" alt="Shodan"/>
+						<aside class="notes">
+							
+
+							<p>not safe to rely on security through obscurity</p>
+							<p>The default username/password remains unchanged on many devices</p>
+
+							<p>increased connectivity between personal devices and availability of personal data combined with improvements in commodity hardware makes it easier for trolls, cyberstalkers etc to leverage sensitive information </p>
+
+
+							<p>particularly important where there are actuators involved (eg. controllers for medical devices, buildings, etc)</p>
+
+							<p>people might pay attention to privacy/security when using computer but what about devices they don't think of as computers e.g. baby monitor, wireless energy monitor</p>
+
+							<p><a href="http://www.forbes.com/sites/kashmirhill/2013/09/04/shodan-terrifying-search-engine/">http://www.forbes.com/sites/kashmirhill/2013/09/04/shodan-terrifying-search-engine/</a></p>
+							
+						</aside>
+					</section>
+
+					
+				</section>
+				<section>
+					<section>
+						<h2>The Open Internet of Everything</h2>
+					
+						<p class="fragment">many eyes make all bugs shallow</p>
+						<aside class="notes">
+							Sometimes referred to as Linus's law - named after Linus Torvalds, founder of Linux.
+						</aside>
+					</section>
+					<section>
+						<h3>Internet of Things<br/> Bill of Rights</h3>
+						
+							<blockquote>
+								<ul>
+									<li>Open is better than closed; this ensures portability between Internet of Things devices.</li>
+									<li>Consumers, not companies, own the data collected by Internet of Things devices</li>
+									<li>Internet of Things devices that collect public data must share that data.</li>
+									<li class="fragment highlight-green">Users have the right to keep their data private.</li>
+									<li>Users can delete or back up data collected by Internet of Things devices.</li>
+								</ul>
+								<a href="http://www.nytimes.com/roomfordebate/2013/09/08/privacy-and-the-internet-of-things/a-bill-of-rights-for-the-internet-of-things">&mdash;Limor (Ladyada) Fried, AdaFruit Industries</a>
+									</blockquote>
+								
+					</section>
+					<section>
+						<h3>Personal vs Public Data</h3>
+						<aside class="notes">
+							Challenges of anonymizing personal data in a sea of interconnected data streams - a few correlated data points can be enough to reidentify individuals
+						</aside>
+					</section>
+					<section>
+						<div style="float:left">
+						<img src="images/okfn-au.png" alt="OKFN AU"/>
+						</div>
+						 <p>Open Knowledge Foundation Australia</p>
+						<p><a href="http://au.okfn.org/">http://au.okfn.org/</a></p>
+						<p><a href="mailto:okfn.brisbane@gmail.com">okfn.brisbane@gmail.com</a></p>
+					</section>
+				</section>
+			</div>
+
+		</div>
+
+		<script src="vendor/revealjs/lib/js/head.min.js"></script>
+		<script src="vendor/revealjs/reveal.min.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'concave', // default/cube/page/concave/zoom/linear/fade/none
+				/*leap: {
+                   naturalSwipe   : false,    // Invert swipe gestures
+      pointerOpacity : 0.5,      // Set pointer opacity to 0.5
+        pointerColor   : '#d80000' // Red pointer
+    },*/
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'vendor/revealjs/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					
+					{ src: 'vendor/revealjs/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+					
+   
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
