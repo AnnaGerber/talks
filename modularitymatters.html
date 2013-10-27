@@ -1,0 +1,469 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Modularity Matters - Anna Gerber</title>
+		<meta name="description" content="Slides for WDS 2013">
+		<meta name="author" content="Anna Gerber">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="vendor/revealjs/reveal.min.css">
+		<link rel="stylesheet" href="vendor/revealjs/simple.css" id="theme">
+		<style type="text/css">
+		.reveal .slides {
+			font-family: Helvetica;
+			text-align:left;
+		}
+		
+		.reveal h1,
+		.reveal h2,
+		.reveal h3,
+		.reveal h4,
+		.reveal h5,
+		.reveal h6 {
+			margin: 0 0 20px 0;
+			font-family: Helvetica;
+			line-height: 1.2em;
+			letter-spacing: 0.05em;
+		}
+		.reveal .upper {
+			text-transform: uppercase;
+		}
+		.reveal a:not(.image) {color:#dc5945;}
+		.reveal section img {border:none;background:transparent;box-shadow:none;}
+		.reveal pre {
+			border:none;
+			box-shadow: none;
+		}
+		hr {border-color:black;}
+		.reveal .controls  div.navigate-left {
+			border-right-color: black !important;
+		}
+		.reveal .controls  div.navigate-right {
+			border-left-color: black !important;
+		}
+		.reveal .controls  div.navigate-up {
+			border-bottom-color: black !important;
+		}
+		.reveal .controls  div.navigate-down {
+			border-top-color: black !important;
+		}
+		</style>
+		
+		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+		<script>
+			document.write( '<link rel="stylesheet" href="vendor/revealjs/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section style="background-color:white;opacity:0.8;padding:2em" data-background="images/mm/lego1.jpg">
+					
+					<h2 class="upper" style="color:#dc5945">Modularity Matters </h1>
+					<p>
+						<a href="http://twitter.com/AnnaGerber">@AnnaGerber</a>
+					</p>
+					<aside class="notes">
+						 <a href="http://creativecommons.org/licenses/by-sa/2.0/" title="Attribution-ShareAlike License">Image</a> by <a href="flickr.org/photos/bdesham/">bdesham</a>
+						<aside>
+				</section>
+				<!-- tomato #dc5945 -->
+				<!-- frog #96bf48 -->
+				<!-- grape #9c4274-->
+				<!-- teal #47bbb3 -->
+				<!-- blue #12b0c5 -->
+				<!-- orange #ec663c -->
+				<section data-background="#96bf48"><!-- frog -->
+					<section>
+						<h2 class="upper">Why?</h2>
+						<aside class="notes">
+							I was a java developer (enterprise java developer) - rigid development practises. Then I started web development: rapid, lightweight, creative development. But then the web applications started to grow and ...
+
+						</aside>
+					</section>
+					<section data-background="images/mm/spaghetti.jpg">
+						<aside class="notes">
+							It looked like this. Particularly hit home about 4 / 5 years ago developing a firefox extension to encourage researchers to organise their research metadata - meanwhile the code was a mess.
+open source - other people needed to be able to understand and extend the code.
+Modularity is essential for developing reusable, maintainable code.
+
+		<dd>
+					<span class="ccIcn ccIcnSmall"><a href="http://creativecommons.org/licenses/by/2.0/"><img src="http://l.yimg.com/g/images/cc_icon_attribution_small.gif" border="0" alt="Attribution" title="Attribution"></a></span>
+ <a href="http://creativecommons.org/licenses/by/2.0/" title="Attribution License">Image</a> by <a href="/photos/gotosira/">gotosira</a>	
+			
+		</dd>
+						</aside>
+					</section>
+					<section>
+						<div style="float:left;position:absolute;top:50px;left:470px">separation of concerns
+						</div>
+						<div style="float:left; position:absolute; top:150px; left:300px">
+							maintainability
+						</div>
+						<div style="float:left; position:absolute; top:380px; left:600px">
+							reuse
+						</div>
+						<div style="float:left; position:absolute; top:300px; left:20px">
+							flexible composition
+						</div>
+						<div style="float:left; position:absolute; top:50px; left:100px">
+							testability
+						</div>
+						<div style="float:left; position:absolute; top:250px; left:400px">
+							reduce complexity
+						</div>
+						<div style="float:left; position:absolute; top:0px; left:300px">
+							namespacing
+						</div>
+						<aside class="notes">
+							independent units<br/>
+							the unix approach: small composible units, do one thing well<br/>
+							JS has no native support for modules, so how do we implement this?
+							patterns and frameworks
+						</aside>
+					</section>
+					
+				</section>
+				<section data-background="#12b0c5"> <!-- grape -->
+					<section>
+						<h2 class="upper">Patterns</h2>
+					</section>
+					<section>
+						<h2>Object Literals</h2>
+						<pre class="fragment">
+var mathModule = {
+    _sum: function(input) {
+        var result = 0;
+        for(var i = 0; i < input.length; i++){
+            result += input[i];
+        }
+        return result;
+    },
+    add: function(x, y){
+        return _sum([x, y]);
+    },
+    pi: 3.14159265359
+}
+						</pre>
+						<aside class="notes">
+							avoid global namespace pollution (only one global for module), 
+							conventions for public/private e.g. underscore for private, 
+							not for encapsulation
+						</aside>
+					</section>
+					<section >
+						<h2>Module Pattern</h2>
+						<pre class="fragment">
+var mathModule = function () {
+    // private
+    var sum = function(input){
+       var result = 0;
+       for(var i = 0; i < input.length; i++){
+           result += input[i];
+       }
+       return result;
+    }
+    return  {
+        // public
+        pi: 3.14159265359,
+        add: function (x, y) {
+            return sum([x, y]);
+        }
+    };
+}();
+						</pre>
+						<div class="fragment">Immediately-Invoked Function Expressions</div>
+						<aside class="notes">
+							Encapsulation.<br/>
+							Public / private scope.
+						</aside>
+					</section>
+					<section>
+						<h2>Module Pattern (Alternate)</h2>
+						<pre>
+var mathModule = (function() {
+  var myPrivateConstant = 42;
+  function sum(input) {
+    // private function ...
+  }
+  this.pi = 3.14159265359;
+  this.add = function(x,y) {
+    sum([x, y]);
+  }
+  return this;
+})();
+						</pre>
+						<aside class="notes">
+							An alternative module pattern - other variants use prototype, constructors
+						</aside>
+					</section>
+					<section>
+						<h2>Revealing Module Pattern</h2>
+						<pre class="fragment">
+var mathModule = function () {
+    var pi = 3.14159265359;
+    var sum = function(input){
+       var result = 0;
+       for(var i = 0; i < input.length; i++){
+           result += input[i];
+       }
+       return result;
+    }
+    var add = function (x, y) {
+        return sum([x, y]);
+    }
+    return  {
+        pi: pi,
+        add: add
+    };
+}();
+						</pre>
+						<aside class="notes">
+							All functions, fields can be declared in the same way. It makes it obvious what is being made public
+						</aside>
+					</section>
+					<section>
+						<h2>Privileged Functions</h2>
+						<pre class="fragment">
+var mathModule = (function() {
+  var myPrivateConstant = 42;
+  function sum(input) {
+    // private function ...
+  }
+  this.getPrivateConstant = function(){
+    return myPrivateConstant;
+  }
+  this.pi = 3.14159265359;
+  this.add = function(x,y) {
+    sum([x, y]);
+  }
+  return this;
+})();
+						</pre>
+						<aside class="notes">
+							advantage: makes it possible to override private fields (e.g. in subclasses)<br/>
+							module pattern is about encapsulation (reducing complexity),
+							but to allow re-use we need loosely coupled modules -
+						</aside>
+					</section>
+					<section>
+						<h2>Mediator Pattern</h2>
+						<img src="images/mm/mediator.png"/>
+						<aside class="notes">
+							
+							mediator pattern allows loosely couple modules, mediator is the application core, mediating module communication via
+							publish subscribe
+						</aside>
+					</section>
+					<section>
+						<h2>Facade Pattern</h2>
+						<img src="images/mm/facade.png"/>
+
+						<aside class="notes">
+							provides permissions/security and can map/rename.<br/>
+							patterns alone not enough:
+							practical considerations for reuse
+							e.g. module loading, dependency management, ordering, 
+							including other resources (CSS, templates etc)
+						</aside>
+					</section>
+				</section>
+
+				<section data-background="#ec663c"><!-- orange -->
+					<section>
+						<h2 class="upper">Implementations</h2>
+					</section>
+					<section>
+						<h2 class="upper">CommonJS</h2>
+						<pre style="float:left" class="fragment">
+var module1 = require("module1");
+function add () { ... }
+exports.add = add;
+						</pre>
+						<div class="float:left">
+							<img class="fragment" src="images/mm/nodejslogo.png" alt="node"/>
+						</div>
+						<div class="float:left">
+							<img class="fragment" style="width:250px" src="images/mm/browserify.png" alt="browserify"/>
+						</div>
+						
+						<aside class="notes">
+							since 2009<br/>
+							Synchronous<br/>
+							no standard "transport format" - usually one module per file<br/>
+							using commonjs for front end development often involves usign a  preprocessor to build / pack<br/>
+						</aside>
+					</section>
+				
+					<section>
+						<h2>AMD</h2>
+						<p>Asynchronous Module Definition</p>
+						<p class="fragment">RequireJS</p>
+						
+						<pre style="float:left" class="fragment">
+require(['module1', 'module1'], function (module1, module2) {
+    // do something
+});
+						</pre>
+
+						<pre style="float:left" class="fragment">
+
+define('myModule', ['module1', 'module2'], function (module1, module2) {
+    return {
+            sum: function( x, y ){}
+    }
+});
+						</pre>
+						<aside class="notes">
+							Came out of CommonJS discussions, also dojo's XHR + eval appraoch
+							(other approaches included adding scripts to head, function wrapping - this is what AMD adopts)<br/>
+							API not implementation<br/>
+							lazy loading, 
+							supported by jQuery, 
+							also curljs
+						</aside>	
+						
+					</section>
+					
+				
+				
+					
+					<section>
+						<h2>UMD</h2>
+						<p>Universal Module Definition</p>
+						<pre style="float:left">
+(function (root, factory) {
+    if (typeof define === 'function' && define.amd) {
+        // AMD. Register as an anonymous module.
+        define(['exports', 'b'], factory);
+    } else if (typeof exports === 'object') {
+        // CommonJS
+        factory(exports, require('b'));
+    } else {
+        // Browser globals
+        factory((root.commonJsStrict = {}), root.b);
+    }
+}(this, function (exports, b) {
+    //use b in some fashion.
+
+    // attach properties to the exports object to define
+    // the exported module properties.
+    exports.action = function () {};
+}));
+						</pre>
+						<aside class="notes">
+							pattern for compabitility with AMD and CommonJS<br/>
+							this example supports CommonJS, AMD or browser globals<br/>
+							https://github.com/umdjs/umd/blob/master/commonjsStrict.js
+						</aside>
+
+					</section>
+					<section>
+						<h2 class="upper">Fragmentation!</h2>
+						<aside class="notes">
+							
+							use UMD if you reuse is really important for you (e.g. providing widely used library), otherwise choose one
+
+						</aside>
+					</section>
+				</section>
+
+				<section data-background="#EEB333">
+
+					<section>
+						<h2 class="upper">The Future</h2>
+					</section>
+					<section>
+						<h2 class="upper">ES6 Modules</h2>
+						<pre style="float:left;width:50%">
+module 'math' {
+    export function add(x, y) {
+        return x + y;
+    }
+    export var pi = 3.14159265359;
+}
+
+						</pre>
+						<pre style="float:left;width:50%">
+import {add, pi} from 'math';
+add(pi, 5)
+
+</pre>
+<hr/>
+<pre style="float:left;width:50%">
+module Math from 'math'; 
+Math.add(Math.pi,5)
+						</pre>
+						<aside class="notes">
+							Harmony ECMA 6 proposal<br/>
+							designed for both front and back end use<br/>
+							polyfill module loader available but proposal is not stable yet https://github.com/ModuleLoader/es6-module-loader<br/>
+
+							transpilers e.g. Square http://square.github.io/es6-module-transpiler/, Traceur https://github.com/google/traceur-compiler<br/>
+							Other practical considerations that I ran out of time to talk about: packaging and distribution e.g. bower http://bower.io/ npm https://npmjs.org/
+						</aside>
+
+					</section>
+				</section>
+				<section data-background="images/mm/lego2.jpg">
+					<h2 class="upper">Thanks</h2>
+					<p><a href="http://twitter.com/AnnaGerber">@AnnaGerber</a></p>
+					<p><a href="http://itee.uq.edu.au/~agerber/">http://itee.uq.edu.au/~agerber/</a></p>
+					<aside class="notes">
+						<dd>
+
+					<span class="ccIcn ccIcnSmall"><a href="http://creativecommons.org/licenses/by-sa/2.0/"><img src="http://l.yimg.com/g/images/cc_icon_attribution_small.gif" border="0" alt="Attribution" title="Attribution"><img src="http://l.yimg.com/g/images/cc_icon_sharealike_small.gif" border="0" alt="Share Alike" title="Share Alike"></a></span>
+ <a href="http://creativecommons.org/licenses/by-sa/2.0/" title="Attribution-ShareAlike License">Image</a> by <a href="/photos/27461854@N04/">mcamcamca</a>
+	
+			
+			
+		</dd>
+					</aside>
+				</section>
+			</div>
+
+		</div>
+
+		<script src="vendor/revealjs/lib/js/head.min.js"></script>
+		<script src="vendor/revealjs/reveal.min.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+				backgroundTransition: 'slide',
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'linear',
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+
+					{ src: 'vendor/revealjs/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					
+					{ src: 'vendor/revealjs/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+					
+   
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
