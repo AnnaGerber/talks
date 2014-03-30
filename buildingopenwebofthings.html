@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Building an open web of things - Anna Gerber</title>
+		<meta name="description" content="Slides for 'What do you know' Brisbane 27 March 2014">
+		<meta name="author" content="Anna Gerber">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="vendor/revealjs/reveal.min.css">
+		<link rel="stylesheet" href="vendor/revealjs/simple.css" id="theme">
+		<style type="text/css">
+		.reveal .slides {
+			font-family: Helvetica;
+			text-align:left;
+		}
+		.reveal section img {border:none;box-shadow:none;}
+		.reveal h1,
+		.reveal h2,
+		.reveal h3,
+		.reveal h4,
+		.reveal h5,
+		.reveal h6 {
+			margin: 0 0 20px 0;
+			font-family: Helvetica;
+			line-height: 1.2em;
+			text-transform: uppercase;}
+
+		</style>
+		
+		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+		<script>
+			document.write( '<link rel="stylesheet" href="vendor/revealjs/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+			<div class="slides">
+				<section data-background="#96bf48">
+					<h2>Building an<br/>Open Web of Things </h2>
+					<p>
+						<a style="letter-spacing: 0.03em;color:white" href="http://twitter.com/AnnaGerber">@AnnaGerber</a>
+					</p>
+					<p style="font-size:smaller;color:#eeeeee;text-align:center;position:absolute;padding-top:200px">(Hit s to see summary of talk)</p>
+				</section>
+				<section data-background="#9c4274">
+					<blockquote style="color:white">
+						<p>"During 2008, the number of things connected to the Internet exceeded the number of people one earth. <br/>
+						By 2020 there will be 50 billion."</p>
+						<p>&mdash;<a style="color:white" href="http://blogs.cisco.com/news/the-internet-of-things-infographic/">CISCO</a></p>
+					</blockquote>
+					<aside class="notes">
+						You've probably heard of the internet of things.
+<p>According to CISCO there are already more things than people on the internet and this number is only going to increase.</p>
+<p>The web of things builds on the internet of things, by suggesting that we can connect IoT devices to each other and with the rest of the web using protocols, technologies, and approaches developed for the web e.g. HTTP and REST. These work well for connecting heterogenous web-apps and services, so the idea is they can also be used to connect heterogenous things.</p>
+
+<p>Web apps that we design and develop will not only need to send and receive data from web of things devices, but also potentially be accessed from them - if you thought responsive design for mobile apps was difficult try designing for persistance of vision displays, Google glass, Pebble etc.</p>
+<p>IoT is not all machine to machine (M2M) interaction - there is much we can contribute to UI / UX design of IoT devices especially wearables</p>
+					</aside>
+				</section>
+				
+				<section data-background="#12b0c5">
+					<div style="float:left;width:250px">
+						<img style="border:none" alt="circuit" src="images/Tempsensorbb.png"/>
+					</div>
+					<div class="fragment" style="float:left;width:450px">
+					<pre style="box-shadow:none;font-size:18px;font-family:courier">
+var five = require("johnny-five");
+var last_temp = 0;
+five.Board().on("ready", function(){
+  // read temperature every 3 seconds
+  var temp = new five.Sensor({
+    pin:"A0", 
+    freq:3000
+  });
+  temp.on("read", function(err, value){
+    var cel = 
+      (100*(value/1000)-50).toFixed(2);
+    // update dashboard
+    send_event('temp', {
+      last:last_temp, 
+      current:cel
+    });
+    last_temp = cel;
+  });
+});
+					</pre>
+					
+				</div>
+				<div class="fragment" style="float:left;width:250px;padding-top:45px;">
+						<img style="border:none" alt="circuit" src="images/dashboard.png"/>
+				</div>
+				<div class="fragment" style="clear:both">
+					https://www.npmjs.org/package/dashing-js<br/>
+					https://www.npmjs.org/package/johnny-five
+				</div>
+					<aside class="notes">
+						There is also a trend towards using languages from the web e.g. JavaScript to program web of things devices. Here's a simple example: a TMP36 temperature sensor connected to an Arduino Nano microcontroller development board. Programmed using Johnny-Five, to poll sensor on analog pin 0 every three seconds and display the result on a web-based dashboard built using dashing-js.
+						<p>This example needs to run on a host e.g. raspberry pi connected to the arduino via serial (e.g. bluetooth or usb)<p>We could easily add a REST interface using restify.. or publish the data to a service like Xively to provide Atom feeds, sharability, discoverability...
+					</aside>
+				</section>
+
+				<section>
+					<div style="float:left;width:50%">
+						<img src="images/opensourcelogo.png" alt="open source"/>
+						<img src="images/opendatalogo.png" alt="open data"/>
+					</div>
+					<div style="float:left;width:50%">
+						<img src="images/oshwlogo.png" alt="open source hardware"/>
+					</div>
+					<aside class="notes">
+						<a href="http://en.wikipedia.org/wiki/File:Opensource.svg">Open Source Logo used under CC BY license</a><br/><a href="http://oshwlogo.com/">Open Hardware logo</a>
+						<p>One of my biggest concerns about the way that the Web of Things is shaping up is that many of the devices that currently exist or that we can imagine gather highly personal, contextual information, and I believe it is very important that individuals retain control over who has access to that information and how they can use it.</p>
+						<p>I think the solution is to look at open source, open hardware and open data movements. I love open source not only because using open source libraries and frameworks helps me to create better web apps, faster, but I love the culture of “let a thousand flowers bloom”. Having alternatives gives me freedom of choice over the tools that I use, and I can selectively  customise and scrutinize them. But the thing I love most about the open source / hardware / data movements is the community, which drives innovation and establishes expectations about what I should be able to do with the software / hardware / data that I use. So even if I choose to use proprietary solutions, those closed options are better (than they might otherwise have been) because of the open alternatives that are available.</p>
+						<p>We’ve seen how what happens when vendors get in and create highly controlled, walled communities. Let’s not let that happen with IoT.</p>
+
+					</aside>
+				</section>
+				<section data-background-size="900px" data-background="images/nb/ArduinoUno_R3_Front_450px.jpg">
+					<aside class="notes">
+						<p>There is definitely progress being made on the open web of things but more people need to get involved. Platforms like the OSHW Arduino platform are convenient, and a great way to learn about hardware design and prototype web of things devices, but they are just a starting point - suggesting that every IoT project should use Arduino is like saying that every web app should be built using jQuery. There is plenty of room for alternatives, and as builders of the web we need to step up and start building them. To do this, we need to skill up or team up with someone who knows about hardware. Your local hackerspace, fab lab or tech shop is a great way to develop these connections.</p>
+					</aside>
+				</section>
+
+				<section data-background="#F5DB3C">
+						<img src="images/connectallthethings.png" alt="Connect all the things!">
+						<small></a></small>
+						<aside class="notes">
+							<p>Image modified from: <a href="http://hyperboleandahalf.blogspot.com">hyperboleandahalf.blogspot.com</a></p>
+							<p>The web is going physical whether we like it, and whether we are ready for it or not.</p>
+
+							<p>Right now there are no clear market leaders, lots of room for experimentation & opportunity but also no clear agreement on architecture - the internet of things is fragmented. I believe that by adopting standards and technologies that have been proven to work for the web and developing open solutions on top of them, together we can work towards building the web of things that we want, not one that we have to settle for.</p>
+						</aside>
+				</section>
+				<section data-background="images/makethings.jpg">
+					<aside class="notes">
+						<p>So please, get excited and make things and make them open.</p>
+						Image License: CC BY by <a href="http://www.flickr.com/photos/octavaria/5674959568/">Tim Douglas</a>
+					</aside>
+				</section>
+			</div>
+
+		</div>
+
+		<script src="vendor/revealjs/lib/js/head.min.js"></script>
+		<script src="vendor/revealjs/reveal.min.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'concave',
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'vendor/revealjs/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					
+					{ src: 'vendor/revealjs/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+					
+   
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
